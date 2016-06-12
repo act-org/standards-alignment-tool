@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+  <title>Standards Alignment Tool</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/app.css">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap-combobox.css">  
+  <link rel="stylesheet" type="text/css" href="/css/ui.fancytree.css">     
+  <script src="/js/jquery-2.2.4.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>  
+  <script src="/js/bootstrap-combobox.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>    
+  <script src="/js/jquery.fancytree-all.min.js"></script>   
+</head>
+<body>
+
+  <form id="alignForm" method="post">
+    <div class="row-fluid">
+      <div class="col-md-5">
+        <div class="well">
+
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+          </div>
+
+          <select id="sourceCombobox" class="combobox">
+            <option selected></option>
+            <option>/data/1.json</option>
+          </select> 
+
+          <button type="submit" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="top" data-original-title="Load the selected set">Apply</button><br>
+          
+          <button id="initSource" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Reload the set">
+            <span class="glyphicon glyphicon-refresh"></span>
+          </button>
+          <button id="checkSource" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Check all">
+            <span class="glyphicon glyphicon-check"></span>
+          </button>
+          <button id="uncheckSource" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Uncheck all">
+            <span class="glyphicon glyphicon-unchecked"></span>
+          </button>
+          <button id="expandSource" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Expand all">
+            <span class="glyphicon glyphicon-collapse-down"></span>
+          </button>
+          <button id="collapseSource" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Collapse all">
+            <span class="glyphicon glyphicon-collapse-up"></span>
+          </button>
+          <button id="infoSource" type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#alignModalInfo" data-placement="top" data-original-title="Info all">
+            <span class="glyphicon glyphicon-info-sign"></span>
+          </button>
+
+          <fieldset>
+           <div id="sourcetree" class="hierarchy-selector" name="sourceTreeInput">
+           </fieldset>    
+         </div>
+       </div>
+     </div>
+     <div class="col-md-2 trim-container">
+      <div class="well center-block">
+        <button type="button" class="btn btn-default btn-block open-AlignDialog" data-toggle="modal" data-target="#alignModal" data-operation="Align To">Align To <span class="glyphicon glyphicon-arrow-right"></span></button> <button type="button" class="btn btn-default btn-block open-AlignDialog" data-toggle="modal" data-target="#alignModal" data-operation="Align From"><span class="glyphicon glyphicon-arrow-left"></span> Align From</button> <button type="button" class="btn btn-default btn-block open-AlignDialog" data-toggle="modal" data-target="#alignModal" data-operation="Prerequisite">Prerequisite <span class="glyphicon glyphicon-arrow-right"></span></button> <button type="button" class="btn btn-default btn-block open-AlignDialog" data-toggle="modal" data-target="#alignModal" data-operation="Necessary">Necessary <span class="glyphicon glyphicon-arrow-right"></span></button> <button type="button" class="btn btn-default btn-block open-AlignDialog" data-toggle="modal" data-target="#alignModal" data-operation="Enhancing">Enhancing <span class="glyphicon glyphicon-arrow-right"></span></button> <button type="button" class="btn btn-default btn-block open-AlignDialog" data-toggle="modal" data-target="#alignModal" data-operation="Reciprocal">Reciprocal</button>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="well">
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+        </div>
+        
+        <select id = "targetCombobox" class="combobox">
+          <option selected></option>
+          <option>/data/1.json</option>
+        </select> 
+        
+        <button type="submit" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="top" data-original-title="Load the selected set">Apply</button><br>
+
+        <button id="initTarget" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Reload the set">
+          <span class="glyphicon glyphicon-refresh"></span>
+        </button>
+        <button id="checkTarget" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Check all">
+          <span class="glyphicon glyphicon-check"></span>
+        </button>
+        <button id="uncheckTarget" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Uncheck all">
+          <span class="glyphicon glyphicon-unchecked"></span>
+        </button>
+        <button id="expandTarget" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Expand all">
+          <span class="glyphicon glyphicon-collapse-down"></span>
+        </button>
+        <button id="collapseTarget" type="button" class="btn btn-default btn-xs" data-toggle="tooltip" data-placement="top" data-original-title="Collapse all">
+          <span class="glyphicon glyphicon-collapse-up"></span>
+        </button>
+        <button id="infoTarget" type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#alignModalInfo" data-placement="top" data-original-title="Info all">
+          <span class="glyphicon glyphicon-info-sign"></span>
+        </button>
+        <fieldset>
+         <div id="targettree" class="hierarchy-selector" name="targetTreeInput">          
+         </div>
+       </fieldset>
+     </div>
+   </div>
+ </div>
+</div>
+</form> 
+<div class="row-fluid">
+  <div class="col-md-12 trim-container">
+    <div class="well">
+      <table id="alignmentHistory" class="table table-striped">
+        <thead>
+          <tr>
+            <th>
+              Alignment History
+            </th>
+          </tr>
+        </thead>
+        <tbody>           
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- Save Modal -->
+<div class="modal fade" id="alignModal" tabindex="-1" role="dialog" aria-labelledby="aModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="aModalLabel">Ok, let's see here...</h4>
+      </div>
+      <div class="modal-body">
+        Looks like you want to do this:
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                Element
+              </th>
+              <th>
+                Relationship
+              </th>
+              <th>
+                Element
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span id="sourceSelected"></span>
+              </td>
+              <td>
+                <span id="alignOperation"></span>
+              </td>
+              <td>
+                <span id="targetSelected"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button id="saveAlignForm" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Info Modal -->
+<div class="modal fade" id="alignModalInfo" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="infoModalLabel">Here are more details...</h4>
+      </div>
+      <div class="modal-body">
+        <div class="panel-group" id="infoAccordion">
+        </div>                      
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->  
+<script src="/js/app.js"></script>
+</body>
+</html>

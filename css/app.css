@@ -1,0 +1,53 @@
+
+.trim-container {
+  padding-right:0px;
+  padding-left:0px;
+  margin-bottom:0px;
+}
+
+.trim-left{
+  padding-left:0px;
+}
+
+.trim-right{
+  padding-right:0px;
+}
+
+div.hierarchy-selector {
+    border: 1px solid black;  
+}
+
+
+.relation-item{
+  margin-bottom:1em;
+}
+
+.relation-item ul{
+  margin-top:0;
+  margin-bottom:0;
+}
+
+
+#sourcetree, #targettree{
+  margin-bottom:1em;
+}
+
+#sourcetree ul.fancytree-container {
+  max-height: 392px; 
+  height: 392px;
+  overflow: scroll;
+  position: relative;
+}
+
+#targettree ul.fancytree-container{
+  height:392px;
+  max-height:392px;
+}
+
+#source-relations{
+  border:1px solid #000;
+  height:150px;
+  overflow:auto;
+  font-size:95%;
+  padding:0.5em;
+}
