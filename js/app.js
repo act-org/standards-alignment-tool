@@ -1,21 +1,21 @@
 var currentSourceNode;
 var currentTargetNode;
 
-// Source tree funtions ****************************
+// Source tree functions ****************************
 function clearSourceRelationHighlights() {
   $('#sourcetree .fancytree-title').removeClass('');
 }
 function highlightSourceRelations() {
 }
 
-// Target tree funtions ****************************
+// Target tree functions ****************************
 function clearTargetRelationHighlights() {
   $('#targettree .fancytree-title').removeClass('');
 }
 function highlightTargetRelations() {
 }
 
-// Common tree funtions ****************************
+// Common tree functions ****************************
 
 //Open a modal that shows the node view of all the selected nodes
 function loadInfoModal(tree) {  
